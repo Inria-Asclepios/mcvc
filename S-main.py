@@ -4,8 +4,8 @@ from SyntheticData import SimDataGen1, splitdata, wrong_labels, PlotData
 from Diagnostics import Score, plot_channel_loss, plot_loss, plot_latent, plot_latent_c, plot_latent_evol, PlotPath
 
 
-n_feats=[10,12,10,10,10]
-z_dim=4
+n_feats=[10,12,10,10,10]  #dimension of each datasets 
+z_dim=4 #Latent dimension 
 
 data,labels, L = SimDataGen1(n_labels=3, 
                             n_feats=n_feats,
@@ -20,7 +20,7 @@ data,labels, L = SimDataGen1(n_labels=3,
 #This line attributs wrong label to the third dataset
 labl=wrong_labels(labels,dataset=2, l=2, wl=3, ratio=0.5, n=4)
 X_train, X_test, Y_train, Y_test = splitdata(data,labl, 2000)
-L=[4,4,4,4,4]
+L=[4,4,4,4,4] 
 
 # Comment the three lines above and uncomment this line if you don't want the wrong label scenario
 X_train, X_test, Y_train, Y_test = splitdata(data,labels, 2000)
@@ -31,13 +31,13 @@ PlotData(X_train, Y_train, dim=0)
 
 #Set the hyper-parameters
 
-adam_lr = 1e-4
-n_epochs = 10000
+adam_lr = 1e-4  #learning rate for adam optimizer
+n_epochs = 10000 #number of iterations 
 
 init_dict = {'x_dims': n_feats, 
              'z_dim': z_dim, 
              'n_labels': L, 
-             'h_dim1': 10, 'h_dim2': 6, 'h_dim3': 4 }
+             'h_dim1': 10, 'h_dim2': 6, 'h_dim3': 4 } # dimensions of all layers from input to latent space
 
 # Training the model
 
@@ -78,7 +78,7 @@ Test_score = Score(pred_test, Y_test, L, Print=True)
 
 
 
-# individual channels: 
+# individual channels, same experiment: 
     
     
 X1tr=[X_train[0]]
